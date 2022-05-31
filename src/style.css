@@ -1,0 +1,38 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto 4fr;
+}
+
+header {
+    background-color: rgb(249, 204, 204);
+    color: black;
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid red;
+}
+
+header h1 {
+    padding: 16px 0px;
+}
+
+#nav {
+    color: black;
+    background-color: rgb(249, 204, 204);
+}
+
+main {
+    color: black;
+    background-color: white;
+    grid-column: 2 / 3;
+}
