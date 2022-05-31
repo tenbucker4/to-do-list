@@ -20,10 +20,19 @@ header {
     justify-content: center;
     align-items: center;
     border-bottom: 2px solid red;
+    position: relative;
 }
 
 header h1 {
     padding: 16px 0px;
+}
+
+header img {
+    width: 2rem;
+    height: auto;
+    position: absolute;
+    top: 25%;
+    left: 16px;
 }
 
 #nav {
@@ -31,8 +40,16 @@ header h1 {
     background-color: rgb(249, 204, 204);
 }
 
+/* Main container  */
 main {
     color: black;
     background-color: white;
-    grid-column: 2 / 3;
+}
+    
+#main-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
 }
