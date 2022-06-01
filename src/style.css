@@ -82,6 +82,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
 }
 
 .task-item {
@@ -89,6 +90,16 @@ main {
     border: 2px solid #bfdbfe;
     border-radius: 5px;
     padding: 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 16px;
+}
+
+
+.task-item p {
+    font-size: 1rem;
+    color: grey;
 }
 
 #form-container {
