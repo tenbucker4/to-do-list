@@ -35,3 +35,18 @@ const buttonToggles = (() => {
         }
     })
 })();
+
+const addTaskToList = (() => {
+    const taskTitle = document.getElementById("task-title");
+    const taskDetails = document.getElementById("task-details");
+    const taskDate = document.getElementById("task-date");
+    const taskList = document.getElementById("task-list");
+    const submitTaskBtn = document.getElementById("submit-task");
+
+    submitTaskBtn.addEventListener("click", function() {
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task-item");
+        taskItem.textContent = taskTitle.value;
+        taskList.appendChild(taskItem);
+    })
+})();
