@@ -10,40 +10,60 @@ body {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: auto 4fr;
+    font-family: sans-serif;
 }
 
+
+/* Header */
 header {
-    background-color: rgb(249, 204, 204);
-    color: black;
+    background-color: #1d4ed8;
+    color: #eff6ff;
     grid-column: 1 / 3;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid red;
     position: relative;
 }
 
 header h1 {
-    padding: 16px 0px;
+    padding: 24px 0px;
 }
 
 header img {
     width: 2rem;
     height: auto;
     position: absolute;
-    top: 25%;
-    left: 16px;
+    top: 30%;
+    left: 24px;
+    cursor: pointer;
 }
 
+header img:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    border: none;
+}
+
+/* Nav Bar */
 #nav {
     color: black;
-    background-color: rgb(249, 204, 204);
+    background-color: #bfdbfe;
+    border-right: 2px solid #3b82f6;
+}
+
+#nav h2 {
+    padding-top: 24px;
+    padding-left: 24px;
 }
 
 /* Main container  */
 main {
     color: black;
-    background-color: white;
+    background-color: #eff6ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
 }
     
 #main-container {
@@ -52,4 +72,44 @@ main {
     width: 80%;
     align-items: center;
     justify-content: center;
+    padding-top: 24px;
+    gap: 16px;
+}
+
+#form-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #bfdbfe;
+    border-radius: 5px;
+}
+
+#form-container form {
+    padding-top: 24px;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 90%;
+}
+
+#form-container input {
+    width: 100%;
+    height: 1.5rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 5px;
+    background-color: #eff6ff;
+    padding: 0px 8px;
+}
+
+#form-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
 }

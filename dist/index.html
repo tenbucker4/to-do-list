@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <img src="../src/images/menu-black.png" alt="menu">
+        <img id="menu-btn" src="../src/images/menu-white.png" alt="menu">
         <h1>To-Do List</h1>
     </header>
     <div id="nav">
@@ -20,6 +20,17 @@
         <div id="main-container">
             <div id="current-directory">Project</div>
             <div id="task-list">tasks go here</div>
+            <div id="form-container">
+                <form action="">
+                    <input type="text" id="task-title" placeholder="Title" maxlength="60">
+                    <input type="text" id="task-details" placeholder="Details (optional)" maxlength="200">
+                    <input type="date" id="task-date">
+                    <div id="form-buttons">
+                        <button type="button" id="submit-task">Submit</button>
+                        <button type="button" id="hide-form">Cancel</button>
+                    </div>
+                </form>
+            </div>
             <button id="add-task">Add Task</button>
         </div>
     </main>
