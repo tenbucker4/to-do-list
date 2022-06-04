@@ -156,3 +156,5 @@ function renderTasks() {
 
 //     }
 //  });
+
+// ADD CATEGORY CHECKBOX TO OBJECT, SORT TASKS ACCORDING TO CATEGORY
