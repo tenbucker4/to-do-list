@@ -1,5 +1,6 @@
 import "./style.css";
 
+// Tasks array that will be used to populate DOM
 let myTasks = [];
 
 // Task creation
@@ -16,6 +17,8 @@ class Task {
 const buttonToggles = (() => {
     const menuBtn = document.getElementById("menu-btn");
     const navBar = document.getElementById("nav");
+
+    // Hide/show nav bar when hamburger button is clicked
     let navDisplay = true;
     menuBtn.addEventListener("click", function() {
         if (navDisplay == true) {
@@ -29,6 +32,7 @@ const buttonToggles = (() => {
         }
     })
 
+    // Show add task form when button is clicked
     const newTaskBtn = document.getElementById("add-task");
     let formDisplay = false;
     newTaskBtn.addEventListener("click", function() {
@@ -40,6 +44,7 @@ const buttonToggles = (() => {
         }
     })
 
+    // Hide task form when button is clicked
     const cancelFormBtn = document.getElementById("hide-form");
     cancelFormBtn.addEventListener("click", function() {
         if (formDisplay == true) {
@@ -67,12 +72,14 @@ submitTaskBtn.addEventListener('click', (e) => {
 
 // Display current tasks on screen
 function renderTasks() {
+    // First clear all tasks to avoid duplication
     const taskList = document.getElementById("task-list");
     const allTasks = document.querySelectorAll(".task-item");
     for (let i = 0; i < allTasks.length; i++) {
         allTasks[i].remove();
     }
 
+    // For each entry in myTasks, create a DOM element
     let index = 0;
     myTasks.forEach((task) => {
         const taskItem = document.createElement("div");
@@ -81,8 +88,8 @@ function renderTasks() {
 
         const checkbox = document.createElement("div");
         checkbox.classList.add("checkbox");
+        checkbox.setAttribute("id", "checkbox");
         taskItem.appendChild(checkbox);
-        
 
         const displayTitle = document.createElement("h4");
         displayTitle.classList.add("displayTitle");
@@ -99,6 +106,7 @@ function renderTasks() {
         displayDate.textContent = task.date;
         taskItem.appendChild(displayDate);
 
+        // Edit button and functionality - more on this later
         const editButton = document.createElement("button");
         editButton.setAttribute("id", "edit");
         editButton.textContent = "Edit";
@@ -110,6 +118,8 @@ function renderTasks() {
             renderTasks();
         })
 
+        // Link the index to the delete button and increment per task element.
+        // Pressing delete button removes the parent dom element at the index corrresponding to myTasks.
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("id", "delete");
         deleteButton.textContent = "Delete";
@@ -123,6 +133,7 @@ function renderTasks() {
             renderTasks;
         });
 
+        // Highlight checkbox and strikethrough task items when clicked
         checkbox.addEventListener("click", () => {
             if (checkbox.classList.contains("completed")) {
                 task.completed = false;
@@ -138,3 +149,10 @@ function renderTasks() {
         });
     })
 }
+
+// EVENT DELEGATION - SEEMS VERY USEFUL
+// document.addEventListener('click',function(e) {
+//     if (e.target && e.target.id == 'checkbox') {
+
+//     }
+//  });
