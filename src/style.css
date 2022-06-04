@@ -95,6 +95,23 @@ main {
     gap: 16px;
 }
 
+.checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid lightgreen;
+    background-color: transparent;
+}
+
+.completed {
+    background-color: lightgreen;
+}
+
+button:hover,
+.checkbox:hover {
+    cursor: pointer;
+}
+
 
 .task-item p {
     font-size: 1rem;

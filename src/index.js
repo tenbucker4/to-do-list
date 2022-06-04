@@ -61,7 +61,6 @@ submitTaskBtn.addEventListener('click', (e) => {
     myTasks.push(newTask);
     renderTasks();
     form.reset();
-    console.log(myTasks);
 })
 
 
@@ -79,6 +78,17 @@ function renderTasks() {
         taskItem.classList.add("task-item");
         taskList.appendChild(taskItem);
 
+        const checkbox = document.createElement("div");
+        checkbox.classList.add("checkbox");
+        taskItem.appendChild(checkbox);
+        checkbox.addEventListener("click", () => {
+            if (checkbox.classList.contains("completed")) {
+                checkbox.classList.remove("completed")
+            } else {
+                checkbox.classList.add("completed");
+            }
+        });
+
         const displayTitle = document.createElement("h4");
         displayTitle.classList.add("displayTitle");
         displayTitle.textContent = task.title;
@@ -95,8 +105,15 @@ function renderTasks() {
         taskItem.appendChild(displayDate);
 
         const editButton = document.createElement("button");
+        editButton.setAttribute("id", "edit");
         editButton.textContent = "Edit";
+        editButton.dataset.linkedArray = index;
         taskItem.appendChild(editButton);
+        editButton.addEventListener("click", () => {
+            console.log("edit");
+            task.title = "Edited";
+            renderTasks();
+        })
 
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("id", "delete");
