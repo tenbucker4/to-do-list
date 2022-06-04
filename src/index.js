@@ -73,6 +73,7 @@ function renderTasks() {
         allTasks[i].remove();
     }
 
+    let index = 0;
     myTasks.forEach((task) => {
         const taskItem = document.createElement("div");
         taskItem.classList.add("task-item");
@@ -100,6 +101,14 @@ function renderTasks() {
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("id", "delete");
         deleteButton.textContent = "Delete";
+        deleteButton.dataset.linkedArray = index;
+        index++;
         taskItem.appendChild(deleteButton);
+        let taskToRemove = deleteButton.dataset.linkedArray;
+        deleteButton.addEventListener("click", () => {
+            taskItem.remove();
+            myTasks.splice(taskToRemove, 1);
+            renderTasks;
+        });
     })
 }
