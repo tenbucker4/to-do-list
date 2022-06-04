@@ -4,10 +4,11 @@ let myTasks = [];
 
 // Task creation
 class Task {
-    constructor(title, details, date) {
+    constructor(title, details, date, completed) {
         this.title = title;
         this.details = details;
         this.date = date;
+        this.completed = completed;
     }
 }
 
@@ -81,13 +82,7 @@ function renderTasks() {
         const checkbox = document.createElement("div");
         checkbox.classList.add("checkbox");
         taskItem.appendChild(checkbox);
-        checkbox.addEventListener("click", () => {
-            if (checkbox.classList.contains("completed")) {
-                checkbox.classList.remove("completed")
-            } else {
-                checkbox.classList.add("completed");
-            }
-        });
+        
 
         const displayTitle = document.createElement("h4");
         displayTitle.classList.add("displayTitle");
@@ -126,6 +121,20 @@ function renderTasks() {
             taskItem.remove();
             myTasks.splice(taskToRemove, 1);
             renderTasks;
+        });
+
+        checkbox.addEventListener("click", () => {
+            if (checkbox.classList.contains("completed")) {
+                task.completed = false;
+                checkbox.classList.remove("completed");
+                displayTitle.classList.remove("strikethrough");
+                displayDetails.classList.remove("strikethrough");
+            } else {
+                checkbox.classList.add("completed");
+                task.completed = true;
+                displayTitle.classList.add("strikethrough");
+                displayDetails.classList.add("strikethrough");
+            }
         });
     })
 }

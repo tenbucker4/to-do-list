@@ -107,6 +107,10 @@ main {
     background-color: lightgreen;
 }
 
+.strikethrough {
+    text-decoration: line-through;
+}
+
 button:hover,
 .checkbox:hover {
     cursor: pointer;
