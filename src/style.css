@@ -88,6 +88,10 @@ main {
     gap: 16px;
 }
 
+#current-directory {
+    font-weight: bold;
+}
+
 #task-list {
     width: 100%;
     display: flex;
@@ -158,14 +162,25 @@ button:hover,
 }
 
 #form-container input[type="text"],
-#form-container input[type="date"] {
+#form-container input[type="date"],
+#task-details {
     width: 100%;
-    height: 1.5rem;
     font-family: inherit;
     border: none;
     border-radius: 5px;
     background-color: #eff6ff;
     padding: 0px 8px;
+}
+
+#task-title, 
+#task-date {
+    height: 1.5rem;
+}
+
+#task-details {
+    height: 4rem;
+    resize: none;
+    padding-top: 3px;
 }
 
 #form-buttons {
