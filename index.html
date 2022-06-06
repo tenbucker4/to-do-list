@@ -25,6 +25,20 @@
                     <input type="text" id="task-title" placeholder="Title" maxlength="60" required>
                     <input type="text" id="task-details" placeholder="Details (optional)" maxlength="200">
                     <input type="date" id="task-date">
+                    <div id="category">
+                        <div class="category-section">
+                            <input type="radio" name="category" id="business">
+                            <label for="business">Business</label>
+                        </div>
+                        <div class="category-section">
+                            <input type="radio" name="category" id="school">
+                            <label for="school">School</label>
+                        </div>
+                        <div class="category-section">
+                            <input type="radio" name="category" id="personal">
+                            <label for="personal">Personal</label>
+                        </div>
+                    </div>
                     <div id="form-buttons">
                         <button type="button" id="submit-task">Submit</button>
                         <button type="button" id="hide-form">Hide</button>
