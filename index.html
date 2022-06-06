@@ -14,11 +14,16 @@
         <h1>To-Do List</h1>
     </header>
     <div id="nav">
-        <h2>Home</h2>
+        <h2>Folders</h2>
+        <ul>
+            <li class="folder" id="businessFolder">Business</li>
+            <li class="folder" id="schoolFolder">School</li>
+            <li class="folder" id="personalFolder">Personal</li>
+        </ul>
     </div>
     <main>
         <div id="main-container">
-            <div id="current-directory">Project</div>
+            <div id="current-directory"></div>
             <div id="task-list"></div>
             <div id="form-container">
                 <form id="form" action="">
@@ -27,15 +32,15 @@
                     <input type="date" id="task-date">
                     <div id="category">
                         <div class="category-section">
-                            <input type="radio" name="category" id="business">
+                            <input type="radio" name="category" id="business" value="Business">
                             <label for="business">Business</label>
                         </div>
                         <div class="category-section">
-                            <input type="radio" name="category" id="school">
+                            <input type="radio" name="category" id="school" value="School">
                             <label for="school">School</label>
                         </div>
                         <div class="category-section">
-                            <input type="radio" name="category" id="personal">
+                            <input type="radio" name="category" id="personal" value="Personal">
                             <label for="personal">Personal</label>
                         </div>
                     </div>
