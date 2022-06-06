@@ -5,10 +5,11 @@ let myTasks = [];
 
 // Task creation
 class Task {
-    constructor(title, details, date, completed) {
+    constructor(title, details, date, category, completed) {
         this.title = title;
         this.details = details;
         this.date = date;
+        this.category = category;
         this.completed = completed;
     }
 }
@@ -54,6 +55,31 @@ const buttonToggles = (() => {
     })
 })();
 
+// Navigate to selected folder from nav bar
+const folders = document.querySelectorAll(".folder");
+const currentFolderTitle = document.getElementById("current-directory");
+// Open business directory by default on window open
+let currentDirectory = "businessFolder";
+window.onload = (setCurrentDirectory(currentDirectory));
+
+function setCurrentDirectory(directory) {
+    if (directory == "businessFolder") {
+        currentFolderTitle.textContent = "Business";
+    } else if (directory == "schoolFolder") {
+        currentFolderTitle.textContent = "School";
+    } else {
+        currentFolderTitle.textContent = "Personal";
+    }
+}
+
+folders.forEach((folder) => {
+    folder.addEventListener('click', () => {
+        currentDirectory = folder.id;
+        setCurrentDirectory(currentDirectory);
+    })
+})
+
+
 // Add task to array when form is submitted
 const form = document.getElementById("form");
 const submitTaskBtn = document.getElementById("submit-task");
@@ -62,6 +88,13 @@ submitTaskBtn.addEventListener('click', (e) => {
     const title = document.getElementById("task-title").value;
     const details = document.getElementById("task-details").value;
     const date = document.getElementById("task-date").value;
+    const business = document.getElementById("business").value;
+    const school = document.getElementById("school").value;
+    const personal = document.getElementById("personal").value;
+    // TODO: Add tabbed sorting according to which radio button is selected
+    console.log(business);
+    console.log(school);
+    console.log(personal);
 
     let newTask = new Task(title, details, date);
     myTasks.push(newTask);

@@ -46,11 +46,26 @@ header img:hover {
 #nav {
     color: black;
     background-color: #bfdbfe;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 #nav h2 {
     padding-top: 24px;
     padding-left: 24px;
+}
+
+#nav ul {
+    padding-left: 36px;
+    list-style-type: none;
+    line-height: 1.5rem;
+}
+
+
+#nav ul li:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* Main container  */
