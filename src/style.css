@@ -116,12 +116,13 @@ main {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-    border: 2px solid lightgreen;
+    border: 1px solid black;
     background-color: transparent;
 }
 
 .completed {
     background-color: lightgreen;
+    border: 1px solid lightgreen;
 }
 
 .strikethrough {

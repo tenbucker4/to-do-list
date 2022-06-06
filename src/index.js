@@ -1,7 +1,9 @@
 import "./style.css";
 
 // Tasks array that will be used to populate DOM
-let myTasks = [];
+let businessTasks = [];
+let schoolTasks = [];
+let personalTasks = [];
 
 // Task creation
 class Task {
@@ -67,7 +69,7 @@ function setCurrentDirectory(directory) {
         currentFolderTitle.textContent = "Business";
     } else if (directory == "schoolFolder") {
         currentFolderTitle.textContent = "School";
-    } else {
+    } else if (directory == "personalFolder"){
         currentFolderTitle.textContent = "Personal";
     }
 }
@@ -88,16 +90,26 @@ submitTaskBtn.addEventListener('click', (e) => {
     const title = document.getElementById("task-title").value;
     const details = document.getElementById("task-details").value;
     const date = document.getElementById("task-date").value;
-    const business = document.getElementById("business").value;
-    const school = document.getElementById("school").value;
-    const personal = document.getElementById("personal").value;
-    // TODO: Add tabbed sorting according to which radio button is selected
-    console.log(business);
-    console.log(school);
-    console.log(personal);
+    let category;
+    // Check which category is checked off
+    if (document.getElementById("business").checked == true) {
+        category = "business";
+    } else if (document.getElementById("school").checked == true) {
+        category = "school"; 
+    } else {
+        category = "personal";
+    }
 
-    let newTask = new Task(title, details, date);
-    myTasks.push(newTask);
+    // Add task to array corresponding to selected category
+    let newTask = new Task(title, details, date, category);
+    if (newTask.category == "business") {
+        businessTasks.push(newTask);
+    } else if (newTask.category == "school") {
+        schoolTasks.push(newTask);
+    } else {
+        personalTasks.push(newTask);
+    }
+
     renderTasks();
     form.reset();
 })
@@ -114,7 +126,7 @@ function renderTasks() {
 
     // For each entry in myTasks, create a DOM element
     let index = 0;
-    myTasks.forEach((task) => {
+    businessTasks.forEach((task) => {
         const taskItem = document.createElement("div");
         taskItem.classList.add("task-item");
         taskList.appendChild(taskItem);
@@ -145,6 +157,7 @@ function renderTasks() {
         editButton.textContent = "Edit";
         editButton.dataset.linkedArray = index;
         taskItem.appendChild(editButton);
+        // TODO: implement edit task functionality
         editButton.addEventListener("click", () => {
             console.log("edit");
             task.title = "Edited";
@@ -162,7 +175,7 @@ function renderTasks() {
         let taskToRemove = deleteButton.dataset.linkedArray;
         deleteButton.addEventListener("click", () => {
             taskItem.remove();
-            myTasks.splice(taskToRemove, 1);
+            businessTasks.splice(taskToRemove, 1);
             renderTasks;
         });
 
