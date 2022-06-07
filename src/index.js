@@ -29,7 +29,7 @@ const buttonToggles = (() => {
             document.querySelector("main").style.width = "100vw";
             navDisplay = false;
         } else {
-            navBar.style.display = "block";
+            navBar.style.display = "flex";
             document.querySelector("main").style.width = "auto";
             navDisplay = true;
         }
@@ -60,6 +60,7 @@ const buttonToggles = (() => {
 // Navigate to selected folder from nav bar
 const folders = document.querySelectorAll(".folder");
 const currentFolderTitle = document.getElementById("current-directory");
+
 // Open business directory by default on window open
 let currentDirectory = "businessFolder";
 window.onload = (setCurrentDirectory(currentDirectory));
@@ -118,10 +119,8 @@ submitTaskBtn.addEventListener('click', (e) => {
     } else {
         personalTasks.push(newTask);
     }
-    console.log(businessTasks);
-    console.log(schoolTasks);
-    console.log(personalTasks);
 
+    // If creating a task within the currently selected directory, display the updated list
     if (newTask.category == "business" && currentDirectory == "businessFolder") {
         renderTasks(businessTasks);
     } else if (newTask.category == "school" && currentDirectory == "schoolFolder") {
@@ -208,6 +207,17 @@ function renderTasks(list) {
             }
         });
     })
+}
+
+document.addEventListener('click',function(e) {
+    if (e.target && e.target.id == 'delete') {
+        deleteTask(e);
+    }
+ });
+
+function deleteTask(e) {
+    let taskDiv = e.target.parentElement;
+    console.log(taskDiv);
 }
 
 

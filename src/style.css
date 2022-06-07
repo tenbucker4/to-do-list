@@ -90,6 +90,12 @@ main {
 
 #current-directory {
     font-weight: bold;
+    background-color: #1d4ed8;
+    color: #eff6ff;
+    border-radius: 5px;
+    padding: 16px;
+    width: 100%;
+    font-size: 1.5rem;
 }
 
 #task-list {
