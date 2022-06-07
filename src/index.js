@@ -64,6 +64,7 @@ const currentFolderTitle = document.getElementById("current-directory");
 let currentDirectory = "businessFolder";
 window.onload = (setCurrentDirectory(currentDirectory));
 
+// Toggle directory title from nav bar
 function setCurrentDirectory(directory) {
     if (directory == "businessFolder") {
         currentFolderTitle.textContent = "Business";
@@ -78,6 +79,13 @@ folders.forEach((folder) => {
     folder.addEventListener('click', () => {
         currentDirectory = folder.id;
         setCurrentDirectory(currentDirectory);
+        if (currentDirectory == "businessFolder") {
+            renderTasks(businessTasks);
+        } else if (currentDirectory == "schoolFolder") {
+            renderTasks(schoolTasks);
+        } else if (currentDirectory == "personalFolder") {
+            renderTasks(personalTasks);
+        }
     })
 })
 
@@ -90,6 +98,7 @@ submitTaskBtn.addEventListener('click', (e) => {
     const title = document.getElementById("task-title").value;
     const details = document.getElementById("task-details").value;
     const date = document.getElementById("task-date").value;
+    let completed = false;
     let category;
     // Check which category is checked off
     if (document.getElementById("business").checked == true) {
@@ -101,7 +110,7 @@ submitTaskBtn.addEventListener('click', (e) => {
     }
 
     // Add task to array corresponding to selected category
-    let newTask = new Task(title, details, date, category);
+    let newTask = new Task(title, details, date, category, completed);
     if (newTask.category == "business") {
         businessTasks.push(newTask);
     } else if (newTask.category == "school") {
@@ -109,14 +118,24 @@ submitTaskBtn.addEventListener('click', (e) => {
     } else {
         personalTasks.push(newTask);
     }
+    console.log(businessTasks);
+    console.log(schoolTasks);
+    console.log(personalTasks);
 
-    renderTasks();
+    if (newTask.category == "business" && currentDirectory == "businessFolder") {
+        renderTasks(businessTasks);
+    } else if (newTask.category == "school" && currentDirectory == "schoolFolder") {
+        renderTasks(schoolTasks);
+    } else if (newTask.category == "personal" && currentDirectory == "personalFolder") {
+        renderTasks(personalTasks);
+    }
+
     form.reset();
 })
 
 
 // Display current tasks on screen
-function renderTasks() {
+function renderTasks(list) {
     // First clear all tasks to avoid duplication
     const taskList = document.getElementById("task-list");
     const allTasks = document.querySelectorAll(".task-item");
@@ -125,8 +144,7 @@ function renderTasks() {
     }
 
     // For each entry in myTasks, create a DOM element
-    let index = 0;
-    businessTasks.forEach((task) => {
+    list.forEach((task) => {
         const taskItem = document.createElement("div");
         taskItem.classList.add("task-item");
         taskList.appendChild(taskItem);
@@ -155,46 +173,43 @@ function renderTasks() {
         const editButton = document.createElement("button");
         editButton.setAttribute("id", "edit");
         editButton.textContent = "Edit";
-        editButton.dataset.linkedArray = index;
         taskItem.appendChild(editButton);
         // TODO: implement edit task functionality
-        editButton.addEventListener("click", () => {
-            console.log("edit");
-            task.title = "Edited";
-            renderTasks();
-        })
 
         // Link the index to the delete button and increment per task element.
         // Pressing delete button removes the parent dom element at the index corrresponding to myTasks.
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("id", "delete");
         deleteButton.textContent = "Delete";
-        deleteButton.dataset.linkedArray = index;
-        index++;
         taskItem.appendChild(deleteButton);
-        let taskToRemove = deleteButton.dataset.linkedArray;
-        deleteButton.addEventListener("click", () => {
-            taskItem.remove();
-            businessTasks.splice(taskToRemove, 1);
-            renderTasks;
-        });
+
+        function checkCompleted() {
+            if (task.completed == true) {
+                checkbox.classList.add("completed");
+                displayTitle.classList.add("strikethrough");
+                displayDetails.classList.add("strikethrough");
+            }
+        }
+        checkCompleted();
 
         // Highlight checkbox and strikethrough task items when clicked
         checkbox.addEventListener("click", () => {
-            if (checkbox.classList.contains("completed")) {
-                task.completed = false;
+            console.log('click');
+            if (task.completed == false) {
+                checkbox.classList.add("completed");
+                displayTitle.classList.add("strikethrough");
+                displayDetails.classList.add("strikethrough");
+                task.completed = true;
+            } else {
                 checkbox.classList.remove("completed");
                 displayTitle.classList.remove("strikethrough");
                 displayDetails.classList.remove("strikethrough");
-            } else {
-                checkbox.classList.add("completed");
-                task.completed = true;
-                displayTitle.classList.add("strikethrough");
-                displayDetails.classList.add("strikethrough");
+                task.completed = false;
             }
         });
     })
 }
+
 
 // EVENT DELEGATION - SEEMS VERY USEFUL
 // document.addEventListener('click',function(e) {
