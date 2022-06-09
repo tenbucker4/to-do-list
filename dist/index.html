@@ -16,17 +16,44 @@
     <div id="nav">
         <h2>Folders</h2>
         <ul>
-            <li class="folder" id="businessFolder">Business</li>
-            <li class="folder" id="schoolFolder">School</li>
-            <li class="folder" id="personalFolder">Personal</li>
+            <li class="folder" id="businessFolder">Business</li><br>
+            <li class="folder" id="schoolFolder">School</li><br>
+            <li class="folder" id="personalFolder">Personal</li><br>
         </ul>
     </div>
     <main>
         <div id="main-container">
             <div id="current-directory"></div>
             <div id="task-list"></div>
+            <div id="edit-container">
+                <form action="" id="edit-form">
+                    <div id="form-title">Edit Task</div>
+                    <input type="text" id="edit-task-title" maxlength="60">
+                    <textarea id="edit-task-details" maxlength="200"></textarea>
+                    <input type="date" id="edit-task-date">
+                    <div id="edit-category">
+                        <div class="category-section">
+                            <input type="radio" name="category" id="edit-business" value="Business">
+                            <label for="edit-business">Business</label>
+                        </div>
+                        <div class="category-section">
+                            <input type="radio" name="category" id="edit-school" value="School">
+                            <label for="edit-school">School</label>
+                        </div>
+                        <div class="category-section">
+                            <input type="radio" name="category" id="edit-personal" value="Personal">
+                            <label for="edit-personal">Personal</label>
+                        </div>
+                    </div>
+                    <div id="form-buttons">
+                        <button type="button" id="submit-task-edit">Save Changes</button>
+                        <button type="button" id="cancel-edit">Cancel</button>
+                    </div>
+                </form>
+            </div>
             <div id="form-container">
                 <form id="form" action="">
+                    <div id="form-title">New Task</div>
                     <input type="text" id="task-title" placeholder="Title" maxlength="60" required>
                     <textarea id="task-details" placeholder="Details (optional)" maxlength="200"></textarea>
                     <input type="date" id="task-date">

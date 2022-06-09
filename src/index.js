@@ -63,10 +63,10 @@ const currentFolderTitle = document.getElementById("current-directory");
 
 // Open business directory by default on window open
 let currentDirectory = "businessFolder";
-window.onload = (setCurrentDirectory(currentDirectory));
+window.onload = (displayCurrentDirectory(currentDirectory));
 
 // Toggle directory title from nav bar
-function setCurrentDirectory(directory) {
+function displayCurrentDirectory(directory) {
     if (directory == "businessFolder") {
         currentFolderTitle.textContent = "Business";
     } else if (directory == "schoolFolder") {
@@ -79,7 +79,7 @@ function setCurrentDirectory(directory) {
 folders.forEach((folder) => {
     folder.addEventListener('click', () => {
         currentDirectory = folder.id;
-        setCurrentDirectory(currentDirectory);
+        displayCurrentDirectory(currentDirectory);
         if (currentDirectory == "businessFolder") {
             renderTasks(businessTasks);
         } else if (currentDirectory == "schoolFolder") {
@@ -101,6 +101,7 @@ submitTaskBtn.addEventListener('click', (e) => {
     const date = document.getElementById("task-date").value;
     let completed = false;
     let category;
+
     // Check which category is checked off
     if (document.getElementById("business").checked == true) {
         category = "business";
@@ -173,7 +174,6 @@ function renderTasks(list) {
         editButton.setAttribute("id", "edit");
         editButton.textContent = "Edit";
         taskItem.appendChild(editButton);
-        // TODO: implement edit task functionality
 
         // Link the index to the delete button and increment per task element.
         // Pressing delete button removes the parent dom element at the index corrresponding to myTasks.
@@ -209,16 +209,34 @@ function renderTasks(list) {
     })
 }
 
-document.addEventListener('click',function(e) {
+// Listen for click on a delete task button, run delete task function
+document.addEventListener('click', function(e) {
     if (e.target && e.target.id == 'delete') {
         deleteTask(e);
     }
  });
 
+// Delete task from list
 function deleteTask(e) {
     let taskDiv = e.target.parentElement;
-    console.log(taskDiv);
+    let titleDiv = taskDiv.querySelector(".displayTitle").textContent;
+    if (currentDirectory == "businessFolder") {
+        let remainingArray = businessTasks.filter(task => task.title != titleDiv);
+        businessTasks = remainingArray;
+        renderTasks(businessTasks);
+    } else if (currentDirectory == "schoolFolder") {
+        let remainingArray = schoolTasks.filter(task => task.title != titleDiv);
+        schoolTasks = remainingArray;
+        renderTasks(schoolTasks);
+    } else if (currentDirectory == "personalFolder") {
+        let remainingArray = personalTasks.filter(task => task.title != titleDiv);
+        personalTasks = remainingArray;
+        renderTasks(personalTasks);
+    }
 }
+
+// EDIT TASK - first select task based on current directory, splice out of array,
+//  open edit task form, submit new values, render task list on submit
 
 
 // EVENT DELEGATION - SEEMS VERY USEFUL
