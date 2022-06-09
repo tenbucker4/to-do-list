@@ -235,6 +235,65 @@ function deleteTask(e) {
     }
 }
 
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.id == 'edit') {
+        editTask(e);
+    }
+ });
+
+function editTask(e) {
+    document.getElementById("edit-container").style.display = "flex";
+    let taskDiv = e.target.parentElement;
+    let titleDiv = taskDiv.querySelector(".displayTitle").textContent;
+    let detailsDiv = taskDiv.querySelector(".displayDetails").textContent;
+    let dateDiv = taskDiv.querySelector(".displayDate").textContent;
+
+    const submitEdit = document.getElementById("submit-task-edit");
+    const editForm = document.getElementById("edit-form");
+    const taskTitle = document.getElementById("edit-task-title");
+    const taskDetails = document.getElementById("edit-task-details");
+    const taskDate = document.getElementById("edit-task-date");
+    const businessRadio = document.getElementById("edit-business");
+    const schoolRadio = document.getElementById("edit-school");
+    const personalRadio = document.getElementById("edit-personal");
+    let completed = false;
+    let category;
+
+    taskTitle.value = titleDiv;
+    taskDetails.value = detailsDiv;
+    taskDate.value = dateDiv;
+
+    if (currentDirectory == "businessFolder") {
+        businessRadio.checked = true;
+        category = "business";
+    } else if (currentDirectory == "schoolFolder") {
+        schoolRadio.checked = true;
+        category = "school";
+    } else if (currentDirectory == "personalFolder") {
+        personalRadio.checked = true;
+        category = "personal";
+    }
+
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id == "submit-task-edit") {
+            if (currentDirectory == "businessFolder") {
+                let index = businessTasks.findIndex(task => task.title == titleDiv);
+                console.log(index);
+                businessTasks.splice(index, 1);
+                let newTask = new Task(taskTitle.value, taskDetails.value, taskDate.value, category, completed);
+                businessTasks.splice(index, 0, newTask);
+                renderTasks(businessTasks);
+                editForm.reset();
+                document.getElementById("edit-container").style.display = "none";
+            } else if (currentDirectory == "schoolFolder") {
+                schoolRadio.checked = true;
+            } else if (currentDirectory == "personalFolder") {
+                personalRadio.checked = true;
+            }
+        }
+    })
+}
+
 // EDIT TASK - first select task based on current directory, splice out of array,
 //  open edit task form, submit new values, render task list on submit
 

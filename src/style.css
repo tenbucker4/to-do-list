@@ -149,7 +149,7 @@ button:hover,
 /* Forms */
 #form-container,
 #edit-container {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
