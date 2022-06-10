@@ -10,7 +10,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: auto 4fr;
-    font-family: sans-serif;
+    font-family: "Alata", sans-serif;
 }
 
 
@@ -149,6 +149,20 @@ button:hover,
     color: grey;
 }
 
+#add-task {
+    padding: 4px 8px;
+    font-size: 1.2rem;
+    background-color: #1d4ed8;
+    color: #eff6ff;
+    border: 1px solid #1d4ed8;
+    border-radius: 5px;
+}
+
+#add-task:hover {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+}
+
 /* Forms */
 #form-container,
 #edit-container {
@@ -190,6 +204,10 @@ button:hover,
     border-radius: 5px;
     background-color: #eff6ff;
     padding: 0px 8px;
+}
+
+input[type="radio"]:hover {
+    cursor: pointer;
 }
 
 #task-title, 
@@ -242,4 +260,43 @@ button:hover,
 .new-box {
     transform-origin: 50% 0;
 	animation: append-animate .3s linear;
+}
+
+/* Buttons */
+button {
+    font-family: inherit;
+}
+
+#cancel-edit,
+#delete,
+#hide-form {
+    padding: 4px 8px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: red;
+    color: #eff6ff;
+}
+
+#cancel-edit:hover,
+#delete:hover,
+#hide-form:hover {
+    background-color: transparent;
+    color: red;
+}
+
+#edit,
+#submit-task-edit,
+#submit-task {
+    padding: 4px 8px;
+    border: 1px solid green;
+    border-radius: 5px;
+    background-color: green;
+    color: #eff6ff;
+}
+
+#edit:hover,
+#submit-task-edit:hover,
+#submit-task:hover {
+    background-color: transparent;
+    color: green;
 }
