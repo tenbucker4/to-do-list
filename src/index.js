@@ -21,20 +21,6 @@ const buttonToggles = (() => {
     const menuBtn = document.getElementById("menu-btn");
     const navBar = document.getElementById("nav");
 
-    // Hide/show nav bar when hamburger button is clicked
-    let navDisplay = true;
-    menuBtn.addEventListener("click", function() {
-        if (navDisplay == true) {
-            navBar.style.display = "none";
-            document.querySelector("main").style.width = "100vw";
-            navDisplay = false;
-        } else {
-            navBar.style.display = "flex";
-            document.querySelector("main").style.width = "auto";
-            navDisplay = true;
-        }
-    })
-
     // Show add task form when button is clicked
     const newTaskBtn = document.getElementById("add-task");
     const formContainer = document.getElementById("form-container");
