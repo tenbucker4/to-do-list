@@ -301,4 +301,12 @@ function editTask(e) {
             taskDiv.style.border = "2px solid #bfdbfe";
         }
     })
+
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id == "cancel-edit") {
+            editForm.reset();
+            document.getElementById("edit-container").style.display = "none";
+            taskDiv.style.border = "2px solid #bfdbfe";
+        }
+    })
 }
