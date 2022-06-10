@@ -321,8 +321,6 @@ function restore() {
         school = JSON.parse(school);
         personal = JSON.parse(personal);
     
-        console.log(business);
-    
         businessTasks = business;
         schoolTasks = school;
         personalTasks = personal;
