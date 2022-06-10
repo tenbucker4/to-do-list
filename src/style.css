@@ -223,3 +223,19 @@ button:hover,
     align-items: center;
     gap: 4px;
 }
+
+@keyframes append-animate {
+	from {
+		transform: scaleY(0);
+		opacity: 0;
+	}
+	to {
+		transform: scaleY(1);
+		opacity: 1;
+	}
+}
+
+.new-box {
+    transform-origin: 50% 0;
+	animation: append-animate .3s linear;
+}

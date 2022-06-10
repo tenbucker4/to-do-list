@@ -37,25 +37,22 @@ const buttonToggles = (() => {
 
     // Show add task form when button is clicked
     const newTaskBtn = document.getElementById("add-task");
-    let formDisplay = false;
+    const formContainer = document.getElementById("form-container");
     newTaskBtn.addEventListener("click", function() {
-        if (formDisplay == false) {
-            document.getElementById("form-container").style.display = "flex";
-            formDisplay = true;
-        } else {
-            return;
-        }
+        formContainer.style.display = "flex";
+        formContainer.classList.add("new-box");
+        newTaskBtn.style.display = "none";
     })
 
     // Hide task form when button is clicked
-    const cancelFormBtn = document.getElementById("hide-form");
-    cancelFormBtn.addEventListener("click", function() {
-        if (formDisplay == true) {
-            document.getElementById("form-container").style.display = "none";
-            formDisplay = false;
-        }
+    const hideFormBtn = document.getElementById("hide-form");
+    hideFormBtn.addEventListener("click", function() {
+        document.getElementById("form-container").style.display = "none";
+        newTaskBtn.style.display = "inline-block";
     })
 })();
+
+
 
 // Navigate to selected folder from nav bar
 const folders = document.querySelectorAll(".folder");
@@ -96,6 +93,10 @@ const form = document.getElementById("form");
 const submitTaskBtn = document.getElementById("submit-task");
 submitTaskBtn.addEventListener('click', (e) => {
     e.preventDefault();
+
+    document.getElementById("form-container").style.display = "none";
+    document.getElementById("add-task").style.display = "inline-block";
+
     const title = document.getElementById("task-title").value;
     const details = document.getElementById("task-details").value;
     const date = document.getElementById("task-date").value;
@@ -182,6 +183,7 @@ function renderTasks(list) {
         deleteButton.textContent = "Delete";
         taskItem.appendChild(deleteButton);
 
+        // if task is already completed, highlight the checkbox and add a strikethrough to the text
         function checkCompleted() {
             if (task.completed == true) {
                 checkbox.classList.add("completed");
@@ -191,7 +193,7 @@ function renderTasks(list) {
         }
         checkCompleted();
 
-        // Highlight checkbox and strikethrough task items when clicked
+        // Toggle completed tasks
         checkbox.addEventListener("click", () => {
             if (task.completed == false) {
                 checkbox.classList.add("completed");
@@ -243,7 +245,9 @@ document.addEventListener('click', function(e) {
 
 function editTask(e) {
     document.getElementById("edit-container").style.display = "flex";
+    document.getElementById("edit-container").classList.add("new-box");
     const taskDiv = e.target.parentElement;
+    taskDiv.style.border = "2px solid lightgreen"
     const titleDiv = taskDiv.querySelector(".displayTitle");
     const detailsDiv = taskDiv.querySelector(".displayDetails");
     const dateDiv = taskDiv.querySelector(".displayDate");
@@ -294,15 +298,7 @@ function editTask(e) {
             renderTasks(arrayToEdit);
             editForm.reset();
             document.getElementById("edit-container").style.display = "none";
+            taskDiv.style.border = "2px solid #bfdbfe";
         }
     })
 }
-
-// EVENT DELEGATION - SEEMS VERY USEFUL
-// document.addEventListener('click',function(e) {
-//     if (e.target && e.target.id == 'checkbox') {
-
-//     }
-//  });
-
-// ADD CATEGORY CHECKBOX TO OBJECT, SORT TASKS ACCORDING TO CATEGORY
