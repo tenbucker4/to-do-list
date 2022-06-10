@@ -207,6 +207,7 @@ function renderTasks(list) {
                 displayDetails.classList.remove("strikethrough");
                 task.completed = false;
             }
+            saveData();
         });
     })
 }
@@ -235,6 +236,7 @@ function deleteTask(e) {
         personalTasks = remainingArray;
         renderTasks(personalTasks);
     }
+    saveData();
 }
 
 // Onclick on an edit button, execute editTask function
@@ -300,6 +302,7 @@ function editTask(e) {
             editForm.reset();
             document.getElementById("edit-container").style.display = "none";
             taskDiv.style.border = "2px solid #bfdbfe";
+            saveData();
         }
     })
 
