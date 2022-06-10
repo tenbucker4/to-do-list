@@ -193,7 +193,6 @@ function renderTasks(list) {
 
         // Highlight checkbox and strikethrough task items when clicked
         checkbox.addEventListener("click", () => {
-            console.log('click');
             if (task.completed == false) {
                 checkbox.classList.add("completed");
                 displayTitle.classList.add("strikethrough");
@@ -235,6 +234,7 @@ function deleteTask(e) {
     }
 }
 
+// Onclick on an edit button, execute editTask function
 document.addEventListener('click', function(e) {
     if (e.target && e.target.id == 'edit') {
         editTask(e);
@@ -243,60 +243,60 @@ document.addEventListener('click', function(e) {
 
 function editTask(e) {
     document.getElementById("edit-container").style.display = "flex";
-    let taskDiv = e.target.parentElement;
-    let titleDiv = taskDiv.querySelector(".displayTitle").textContent;
-    let detailsDiv = taskDiv.querySelector(".displayDetails").textContent;
-    let dateDiv = taskDiv.querySelector(".displayDate").textContent;
+    const taskDiv = e.target.parentElement;
+    const titleDiv = taskDiv.querySelector(".displayTitle");
+    const detailsDiv = taskDiv.querySelector(".displayDetails");
+    const dateDiv = taskDiv.querySelector(".displayDate");
 
-    const submitEdit = document.getElementById("submit-task-edit");
     const editForm = document.getElementById("edit-form");
     const taskTitle = document.getElementById("edit-task-title");
     const taskDetails = document.getElementById("edit-task-details");
     const taskDate = document.getElementById("edit-task-date");
-    const businessRadio = document.getElementById("edit-business");
-    const schoolRadio = document.getElementById("edit-school");
-    const personalRadio = document.getElementById("edit-personal");
-    let completed = false;
+    const isCompleted = document.getElementById("checkbox");
+
+    let completed;
     let category;
-
-    taskTitle.value = titleDiv;
-    taskDetails.value = detailsDiv;
-    taskDate.value = dateDiv;
-
-    if (currentDirectory == "businessFolder") {
-        businessRadio.checked = true;
-        category = "business";
-    } else if (currentDirectory == "schoolFolder") {
-        schoolRadio.checked = true;
-        category = "school";
-    } else if (currentDirectory == "personalFolder") {
-        personalRadio.checked = true;
-        category = "personal";
+    
+    if (isCompleted.classList.contains("completed")) {
+        completed = true;
+    } else {
+        completed = false;
     }
+
+    taskTitle.value = titleDiv.textContent;
+    taskDetails.textContent = detailsDiv.textContent;
+    taskDate.textContent = dateDiv.textContent;
 
     document.addEventListener('click', function(e) {
         if (e.target && e.target.id == "submit-task-edit") {
+            e.preventDefault();
+            let arrayToEdit;
             if (currentDirectory == "businessFolder") {
-                let index = businessTasks.findIndex(task => task.title == titleDiv);
-                console.log(index);
-                businessTasks.splice(index, 1);
-                let newTask = new Task(taskTitle.value, taskDetails.value, taskDate.value, category, completed);
-                businessTasks.splice(index, 0, newTask);
-                renderTasks(businessTasks);
-                editForm.reset();
-                document.getElementById("edit-container").style.display = "none";
+                arrayToEdit = businessTasks;
+                category = "business";
             } else if (currentDirectory == "schoolFolder") {
-                schoolRadio.checked = true;
+                arrayToEdit = schoolTasks;
+                category = "school";
             } else if (currentDirectory == "personalFolder") {
-                personalRadio.checked = true;
+                arrayToEdit = personalTasks;
+                category = "personal";
             }
+
+            let index = arrayToEdit.findIndex(task => task.title == titleDiv.textContent);
+            if (index < 0) {
+                return;
+            }
+
+            arrayToEdit.splice(index, 1);
+            renderTasks(arrayToEdit);
+            let newTask = new Task(taskTitle.value, taskDetails.value, taskDate.value, category, completed);
+            arrayToEdit.splice(index, 0, newTask);
+            renderTasks(arrayToEdit);
+            editForm.reset();
+            document.getElementById("edit-container").style.display = "none";
         }
     })
 }
-
-// EDIT TASK - first select task based on current directory, splice out of array,
-//  open edit task form, submit new values, render task list on submit
-
 
 // EVENT DELEGATION - SEEMS VERY USEFUL
 // document.addEventListener('click',function(e) {
