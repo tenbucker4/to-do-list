@@ -121,6 +121,7 @@ submitTaskBtn.addEventListener('click', (e) => {
     } else {
         personalTasks.push(newTask);
     }
+    saveData();
 
     // If creating a task within the currently selected directory, display the updated list
     if (newTask.category == "business" && currentDirectory == "businessFolder") {
@@ -310,3 +311,34 @@ function editTask(e) {
         }
     })
 }
+
+
+// Save data to local storage
+function saveData() {
+    localStorage.setItem(`businessTasks`, JSON.stringify(businessTasks))
+    localStorage.setItem(`schoolTasks`, JSON.stringify(schoolTasks))
+    localStorage.setItem(`personalTasks`, JSON.stringify(personalTasks))
+}
+
+function restore() {
+    if (!localStorage.businessTasks || !localStorage.schoolTasks || !localStorage.personalTasks) {
+        return;
+    } else {
+        let business = localStorage.getItem("businessTasks");
+        let school = localStorage.getItem("schoolTasks");
+        let personal = localStorage.getItem("personalTasks");
+    
+        business = JSON.parse(business);
+        school = JSON.parse(school);
+        personal = JSON.parse(personal);
+    
+        console.log(business);
+    
+        businessTasks = business;
+        schoolTasks = school;
+        personalTasks = personal;
+        renderTasks(businessTasks);
+    }
+}
+
+restore()
