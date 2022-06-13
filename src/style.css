@@ -51,6 +51,7 @@ header img:hover {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    align-items: center;
 }
 
 #nav h2 {
@@ -61,9 +62,12 @@ header img:hover {
 }
 
 #nav ul {
-    padding-left: 36px;
     list-style-type: none;
     line-height: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
 }
 
 #nav ul li:hover {
@@ -318,6 +322,10 @@ button {
         width: 100%;
     }
 
+    header h1 {
+        padding: 12px 0px;
+    }
+
     #main-container {
         width: 80%;
     }
@@ -330,5 +338,15 @@ button {
 
     #nav ul {
         line-height: 1.0rem;
+        padding-bottom: 24px;
+        text-align: center;
+    }
+
+    #nav {
+        align-items: center;
+    }
+
+    #nav h2 {
+        text-align: center;
     }
 }
