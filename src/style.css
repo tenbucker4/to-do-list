@@ -70,9 +70,16 @@ header img:hover {
     width: 80%;
 }
 
+#nav ul li {
+    width: 100%;
+    border-radius: 5px;
+    padding: 4px 2px;
+}
+
 #nav ul li:hover {
     cursor: pointer;
-    text-decoration: underline;
+    background-color: #1d4ed8;
+    color: #eff6ff;
 }
 
 /* Main container  */
@@ -285,7 +292,7 @@ button {
 #cancel-edit:hover,
 #delete:hover,
 #hide-form:hover {
-    background-color: transparent;
+    background-color: #eff6ff;
     color: red;
 }
 
@@ -302,7 +309,7 @@ button {
 #edit:hover,
 #submit-task-edit:hover,
 #submit-task:hover {
-    background-color: transparent;
+    background-color: #eff6ff;
     color: green;
 }
 
@@ -314,6 +321,7 @@ button {
         flex-direction: column;
         align-items: center;
         width: 100vw;
+        height: fit-content;
     }
 
     header,
@@ -334,6 +342,7 @@ button {
         height: fit-content;
         flex: 1 1 auto;
         width: 100%;
+        overflow: auto;
     }
 
     #nav ul {
