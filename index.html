@@ -28,9 +28,9 @@
             <div id="edit-container">
                 <form action="" id="edit-form">
                     <div id="form-title">Edit Task</div>
-                    <input type="text" id="edit-task-title" maxlength="60">
-                    <textarea id="edit-task-details" maxlength="200"></textarea>
-                    <input type="date" id="edit-task-date">
+                    <input type="text" id="edit-task-title" maxlength="60" autocomplete="off" required>
+                    <textarea id="edit-task-details" maxlength="400"></textarea>
+                    <input type="date" id="edit-task-date" required>
                     <div id="form-buttons">
                         <button type="submit" id="submit-task-edit">Save Changes</button>
                         <button type="button" id="cancel-edit">Cancel</button>
@@ -40,9 +40,9 @@
             <div id="form-container">
                 <form id="form" action="">
                     <div id="form-title">New Task</div>
-                    <input type="text" id="task-title" placeholder="Title" maxlength="60" required>
-                    <textarea id="task-details" placeholder="Details (optional)" maxlength="200"></textarea>
-                    <input type="date" id="task-date">
+                    <input type="text" id="task-title" placeholder="Title" maxlength="60" autocomplete="off" required>
+                    <textarea id="task-details" placeholder="Details (optional)" maxlength="400"></textarea>
+                    <input type="date" id="task-date" required>
                     <div id="category">
                         <div class="category-section">
                             <input type="radio" name="category" id="business" value="Business" checked="true">
