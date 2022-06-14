@@ -157,7 +157,7 @@ function renderTasks(list) {
         displayDate.textContent = task.date;
         taskItem.appendChild(displayDate);
 
-        // Edit button and functionality - more on this later
+        // Edit button
         const editButton = document.createElement("button");
         editButton.setAttribute("id", "edit");
         editButton.textContent = "Edit";
@@ -328,4 +328,4 @@ function restore() {
     }
 }
 
-restore()
+restore();

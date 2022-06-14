@@ -139,6 +139,30 @@ main {
     border-radius: 50%;
     border: 1px solid black;
     background-color: transparent;
+    flex-shrink: 0;
+}
+
+.displayTitle {
+
+}
+
+.displayDetails {
+    max-width: 67%;
+}
+
+.displayDate {
+    position: absolute;
+    right: 128px;
+}
+
+#delete {
+    position: absolute;
+    right: 8px;
+}
+
+#edit {
+    position: absolute;
+    right: 72px;
 }
 
 .completed {
@@ -174,6 +198,7 @@ button:hover,
     background-color: #eff6ff;
     color: #1d4ed8;
 }
+
 
 /* Forms */
 #form-container,
