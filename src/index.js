@@ -5,7 +5,7 @@ let businessTasks = [];
 let schoolTasks = [];
 let personalTasks = [];
 
-// Task creation
+// Task object creation
 class Task {
     constructor(title, details, date, category, completed) {
         this.title = title;
@@ -237,6 +237,7 @@ document.addEventListener('click', function(e) {
  });
 
 function editTask(e) {
+    // Open edit form and highlight selected task to edit
     document.getElementById("edit-container").style.display = "flex";
     document.getElementById("edit-container").classList.add("new-box");
     const taskDiv = e.target.parentElement;
@@ -260,12 +261,12 @@ function editTask(e) {
         completed = false;
     }
 
+    // Set form values to current task values
     taskTitle.value = titleDiv.textContent;
     taskDetails.textContent = detailsDiv.textContent;
-    taskDate.textContent = dateDiv.textContent;
+    taskDate.value = dateDiv.textContent;
 
     editForm.addEventListener('submit', function(e) {
-        // if (e.target && e.target.id == "submit-task-edit") {
         e.preventDefault();
         let arrayToEdit;
         if (currentDirectory == "businessFolder") {
@@ -284,18 +285,19 @@ function editTask(e) {
             return;
         }
 
+        // Delete task from array and replace with new submitted edit
         arrayToEdit.splice(index, 1);
-        renderTasks(arrayToEdit);
         let newTask = new Task(taskTitle.value, taskDetails.value, taskDate.value, category, completed);
         arrayToEdit.splice(index, 0, newTask);
+        // display new task list, reset form and hide
         renderTasks(arrayToEdit);
         editForm.reset();
         document.getElementById("edit-container").style.display = "none";
         taskDiv.style.border = "2px solid #bfdbfe";
         saveData();
-        // }
     })
 
+    // if edit cancelled, reset form and hide
     document.addEventListener('click', function(e) {
         if (e.target && e.target.id == "cancel-edit") {
             editForm.reset();
