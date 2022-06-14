@@ -11,6 +11,7 @@ body {
     grid-template-columns: 1fr 4fr;
     grid-template-rows: auto 4fr;
     font-family: "Alata", sans-serif;
+    background-color: #eff6ff;
 }
 
 
@@ -95,7 +96,7 @@ main {
 #main-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 90%;
     align-items: center;
     justify-content: center;
     padding-top: 24px;
@@ -142,27 +143,32 @@ main {
     flex-shrink: 0;
 }
 
-.displayTitle {
+.mainBox {
+    /* display: flex;
+    flex-direction: column; */
+    flex: 1;
+    overflow: scroll;
+    flex-wrap: wrap;
+}
 
+.displayTitle {
+    /* flex-wrap: wrap; */
 }
 
 .displayDetails {
-    max-width: 67%;
+    /* flex-wrap: wrap; */
 }
 
 .displayDate {
-    position: absolute;
-    right: 128px;
+
 }
 
 #delete {
-    position: absolute;
-    right: 8px;
+
 }
 
 #edit {
-    position: absolute;
-    right: 72px;
+
 }
 
 .completed {
@@ -179,9 +185,8 @@ button:hover,
     cursor: pointer;
 }
 
-
 .task-item p {
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: grey;
 }
 
@@ -382,5 +387,19 @@ button {
 
     #nav h2 {
         text-align: center;
+    }
+
+    #task-list, 
+    .task-item p {
+        font-size: 0.7rem;
+    }
+
+    .checkbox {
+        height: 0.8rem;
+        width: 0.8rem;
+    }
+
+    .displayDate {
+        display: none;
     }
 }

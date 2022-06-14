@@ -77,7 +77,7 @@ folders.forEach((folder) => {
 // Add task to array when form is submitted
 const form = document.getElementById("form");
 const submitTaskBtn = document.getElementById("submit-task");
-submitTaskBtn.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     document.getElementById("form-container").style.display = "none";
@@ -142,15 +142,19 @@ function renderTasks(list) {
         checkbox.setAttribute("id", "checkbox");
         taskItem.appendChild(checkbox);
 
+        const mainBox = document.createElement("div");
+        mainBox.classList.add("mainBox");
+        taskItem.appendChild(mainBox);
+
         const displayTitle = document.createElement("h4");
         displayTitle.classList.add("displayTitle");
         displayTitle.textContent = task.title;
-        taskItem.appendChild(displayTitle);
+        mainBox.appendChild(displayTitle);
 
         const displayDetails = document.createElement("p");
         displayDetails.classList.add("displayDetails");
         displayDetails.textContent = task.details;
-        taskItem.appendChild(displayDetails);
+        mainBox.appendChild(displayDetails);
 
         const displayDate = document.createElement("p");
         displayDate.classList.add("displayDate");
@@ -260,36 +264,36 @@ function editTask(e) {
     taskDetails.textContent = detailsDiv.textContent;
     taskDate.textContent = dateDiv.textContent;
 
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id == "submit-task-edit") {
-            e.preventDefault();
-            let arrayToEdit;
-            if (currentDirectory == "businessFolder") {
-                arrayToEdit = businessTasks;
-                category = "business";
-            } else if (currentDirectory == "schoolFolder") {
-                arrayToEdit = schoolTasks;
-                category = "school";
-            } else if (currentDirectory == "personalFolder") {
-                arrayToEdit = personalTasks;
-                category = "personal";
-            }
-
-            let index = arrayToEdit.findIndex(task => task.title == titleDiv.textContent);
-            if (index < 0) {
-                return;
-            }
-
-            arrayToEdit.splice(index, 1);
-            renderTasks(arrayToEdit);
-            let newTask = new Task(taskTitle.value, taskDetails.value, taskDate.value, category, completed);
-            arrayToEdit.splice(index, 0, newTask);
-            renderTasks(arrayToEdit);
-            editForm.reset();
-            document.getElementById("edit-container").style.display = "none";
-            taskDiv.style.border = "2px solid #bfdbfe";
-            saveData();
+    editForm.addEventListener('submit', function(e) {
+        // if (e.target && e.target.id == "submit-task-edit") {
+        e.preventDefault();
+        let arrayToEdit;
+        if (currentDirectory == "businessFolder") {
+            arrayToEdit = businessTasks;
+            category = "business";
+        } else if (currentDirectory == "schoolFolder") {
+            arrayToEdit = schoolTasks;
+            category = "school";
+        } else if (currentDirectory == "personalFolder") {
+            arrayToEdit = personalTasks;
+            category = "personal";
         }
+
+        let index = arrayToEdit.findIndex(task => task.title == titleDiv.textContent);
+        if (index < 0) {
+            return;
+        }
+
+        arrayToEdit.splice(index, 1);
+        renderTasks(arrayToEdit);
+        let newTask = new Task(taskTitle.value, taskDetails.value, taskDate.value, category, completed);
+        arrayToEdit.splice(index, 0, newTask);
+        renderTasks(arrayToEdit);
+        editForm.reset();
+        document.getElementById("edit-container").style.display = "none";
+        taskDiv.style.border = "2px solid #bfdbfe";
+        saveData();
+        // }
     })
 
     document.addEventListener('click', function(e) {
