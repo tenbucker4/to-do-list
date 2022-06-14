@@ -1,1 +1,1 @@
-# to-do-list
+Pronto is a to-do list app created using HTML, CSS and vanilla Javascript. Users can create tasks in their business, school or personal folders. Tasks within each folder can be viewed, marked as complete, dated, edited and deleted. Pronto uses users' local storage on their devices to save their data.

@@ -39,7 +39,6 @@ const buttonToggles = (() => {
 })();
 
 
-
 // Navigate to selected folder from nav bar
 const folders = document.querySelectorAll(".folder");
 const currentFolderTitle = document.getElementById("current-directory");
