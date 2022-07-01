@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,7 +15,6 @@ body {
     font-family: "Alata", sans-serif;
     background-color: #eff6ff;
 }
-
 
 /* Header */
 header {
@@ -92,7 +93,7 @@ main {
     align-items: center;
     overflow: scroll;
 }
-    
+
 #main-container {
     display: flex;
     flex-direction: column;
@@ -160,15 +161,12 @@ main {
 }
 
 .displayDate {
-
 }
 
 #delete {
-
 }
 
 #edit {
-
 }
 
 .completed {
@@ -204,7 +202,6 @@ button:hover,
     color: #1d4ed8;
 }
 
-
 /* Forms */
 #form-container,
 #edit-container {
@@ -239,7 +236,7 @@ button:hover,
 #task-details,
 #edit-container input[type="text"],
 #edit-container input[type="date"],
-#edit-task-details{
+#edit-task-details {
     width: 100%;
     font-family: inherit;
     border: none;
@@ -252,7 +249,7 @@ input[type="radio"]:hover {
     cursor: pointer;
 }
 
-#task-title, 
+#task-title,
 #task-date,
 #edit-task-title,
 #edit-task-date {
@@ -289,19 +286,19 @@ input[type="radio"]:hover {
 
 /* Animations */
 @keyframes append-animate {
-	from {
-		transform: scaleY(0);
-		opacity: 0;
-	}
-	to {
-		transform: scaleY(1);
-		opacity: 1;
-	}
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
 }
 
 .new-box {
     transform-origin: 50% 0;
-	animation: append-animate .3s linear;
+    animation: append-animate 0.3s linear;
 }
 
 /* Buttons */
@@ -344,7 +341,7 @@ button {
 }
 
 /* Responsiveness */
-@media (max-width:650px) {
+@media (max-width: 650px) {
     body {
         overflow: scroll;
         display: flex;
@@ -376,7 +373,7 @@ button {
     }
 
     #nav ul {
-        line-height: 1.0rem;
+        line-height: 1rem;
         padding-bottom: 24px;
         text-align: center;
     }
@@ -389,7 +386,7 @@ button {
         text-align: center;
     }
 
-    #task-list, 
+    #task-list,
     .task-item p {
         font-size: 0.7rem;
     }
@@ -401,5 +398,17 @@ button {
 
     .displayDate {
         display: none;
+    }
+}
+
+@media (max-width: 350px) {
+    #category .category-section label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 300px) {
+    #category .category-section label {
+        font-size: 0.5rem;
     }
 }
